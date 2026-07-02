@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /*?page=
+Disallow: /*?category=
+Disallow: /*?id=
+
+Sitemap: https://lankapolypacks.com/sitemap.xml

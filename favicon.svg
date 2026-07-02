@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Lanka Poly Packs">
+  <path fill="#123CFF" d="M29 50c1-6 6-10 12-10h48c6 0 11 4 12 10l10 66H16l13-66Z"/>
+  <path fill="none" stroke="#123CFF" stroke-width="10" stroke-linecap="round" d="M48 40V29c0-13 10-23 23-23s23 10 23 23v11"/>
+  <circle cx="47" cy="54" r="5" fill="#111827"/>
+  <circle cx="88" cy="54" r="5" fill="#111827"/>
+  <path fill="#fff" d="M17 116C25 83 55 56 106 49l5 67H17Z"/>
+</svg>
