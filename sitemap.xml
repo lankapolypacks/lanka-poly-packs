@@ -7,13 +7,19 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lankapolypacks.com/courier-bags-sri-lanka/</loc>
+    <loc>https://lankapolypacks.com/shop/</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://lankapolypacks.com/courier-bags/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://lankapolypacks.com/bubble-mailers-sri-lanka/</loc>
+    <loc>https://lankapolypacks.com/bubble-mailers/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -37,7 +43,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lankapolypacks.com/about-lanka-poly-packs/</loc>
+    <loc>https://lankapolypacks.com/about/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
