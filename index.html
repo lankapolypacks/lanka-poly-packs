@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="../">
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -22,8 +23,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Courier Bags Sri Lanka | Lanka Poly Packs Packaging Supplier</title>
-    <meta name="description" content="Buy courier bags, shipping bags, poly mailer bags, bubble mailer bags and ziplock bags in Sri Lanka. Lanka Poly Packs offers retail and wholesale packaging with WhatsApp ordering.">
+    <title>Contact Lanka Poly Packs | Courier Bag Orders Sri Lanka</title>
+    <meta name="description" content="Contact Lanka Poly Packs through WhatsApp, Facebook or Instagram for courier bags, bubble mailers, ziplock bags, stock, prices and bulk orders.">
     <meta name="keywords" content="courier bag Sri Lanka, courier bags Sri Lanka, shipping bag Sri Lanka, shipping bags Sri Lanka, poly mailer bag Sri Lanka, poly mailer bags Sri Lanka, bubble mailer Sri Lanka, bubble mailer bag Sri Lanka, ziplock bag Sri Lanka, frosted ziplock bag Sri Lanka, packaging supplier Sri Lanka, wholesale packaging Sri Lanka, Lanka Poly Packs">
     <meta name="author" content="Lanka Poly Packs">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -37,14 +38,14 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="canonical" href="https://lankapolypacks.com/">
+    <link rel="canonical" href="https://lankapolypacks.com/contact/">
     <link rel="preload" as="image" href="images/hero-floating-packaging.webp" fetchpriority="high">
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Lanka Poly Packs">
-    <meta property="og:url" content="https://lankapolypacks.com/">
-    <meta property="og:title" content="Lanka Poly Packs | Courier Bags &amp; Packaging Supplier in Sri Lanka">
-    <meta property="og:description" content="Shop courier bags, shipping bags, poly mailer bags, bubble mailers, and ziplock bags for online orders, retail packing, and wholesale packaging in Sri Lanka.">
+    <meta property="og:url" content="https://lankapolypacks.com/contact/">
+    <meta property="og:title" content="Contact Lanka Poly Packs | Courier Bag Orders Sri Lanka">
+    <meta property="og:description" content="Contact Lanka Poly Packs through WhatsApp, Facebook or Instagram for courier bags, bubble mailers, ziplock bags, stock, prices and bulk orders.">
     <meta property="og:image" content="https://lankapolypacks.com/images/hero-floating-packaging.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -52,8 +53,8 @@
     <meta property="og:locale" content="en_LK">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lanka Poly Packs | Courier Bags &amp; Shipping Bags Sri Lanka">
-    <meta name="twitter:description" content="Buy courier bags, shipping bags, poly mailer bags, bubble mailers, and ziplock bags online in Sri Lanka.">
+    <meta name="twitter:title" content="Contact Lanka Poly Packs | Courier Bag Orders Sri Lanka">
+    <meta name="twitter:description" content="Contact Lanka Poly Packs through WhatsApp, Facebook or Instagram for courier bags, bubble mailers, ziplock bags, stock, prices and bulk orders.">
     <meta name="twitter:image" content="https://lankapolypacks.com/images/hero-floating-packaging.webp">
     
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -734,32 +735,70 @@
                 menu.classList.toggle('hidden');
             }
 
-            toggleReviewMotion(button) {
-                const paused = document.body.classList.toggle('reviews-paused');
-                document.querySelectorAll('[onclick="App.toggleReviewMotion(this)"]').forEach((control) => {
-                    control.textContent = paused ? 'Play reviews' : 'Pause reviews';
-                });
-                if (button) button.textContent = paused ? 'Play reviews' : 'Pause reviews';
-            }
+	            toggleReviewMotion(button) {
+	                const paused = document.body.classList.toggle('reviews-paused');
+	                document.querySelectorAll('[onclick="App.toggleReviewMotion(this)"]').forEach((control) => {
+	                    control.textContent = paused ? 'Play reviews' : 'Pause reviews';
+	                });
+	                if (button) button.textContent = paused ? 'Play reviews' : 'Pause reviews';
+	            }
 
-            getRouteUrl(targetView, params = {}) {
-                const url = new URL(window.location.href);
-                url.search = "";
-                url.hash = "";
-                if (targetView && targetView !== "home") url.searchParams.set("page", targetView);
-                if (params.category) url.searchParams.set("category", params.category);
-                if (params.id) url.searchParams.set("id", params.id);
-                return `${url.pathname}${url.search}`;
-            }
+	            getCleanRoutePath(targetView, params = {}) {
+	                const slugify = (value) => String(value || "")
+	                    .toLowerCase()
+	                    .replace(/×/g, "x")
+	                    .replace(/[^a-z0-9]+/g, "-")
+	                    .replace(/^-+|-+$/g, "");
+	                const cleanCategoryRoutes = {
+	                    "Courier Bags": "courier-bags/",
+	                    "Bubble Mailers": "bubble-mailers/",
+	                    "Frosted Ziplock Bags": "frosted-ziplock-bags-sri-lanka/",
+	                    "Handled Courier Bags": "handled-courier-bags-sri-lanka/"
+	                };
+	                if (targetView === "shop" && params.category && cleanCategoryRoutes[params.category]) return cleanCategoryRoutes[params.category];
+	                if (targetView === "shop") return "shop/";
+	                if (targetView === "about") return "about/";
+	                if (targetView === "contact") return "contact/";
+	                if (targetView === "details" && params.id) {
+	                    const product = this.getProductById(params.id);
+	                    if (product) return `products/${slugify(this.getDisplayProductName(product))}/`;
+	                }
+	                return "";
+	            }
 
-            getRouteFromUrl() {
-                const query = new URLSearchParams(window.location.search);
-                const view = query.get("page") || "home";
-                const params = {};
-                if (query.get("category")) params.category = query.get("category");
-                if (query.get("id")) params.id = query.get("id");
-                return { view, params };
-            }
+	            getRouteUrl(targetView, params = {}) {
+	                const routePath = this.getCleanRoutePath(targetView, params);
+	                return routePath ? `/${routePath}` : "/";
+	            }
+
+	            getRouteFromUrl() {
+	                const query = new URLSearchParams(window.location.search);
+	                const pathname = window.location.pathname
+	                    .replace(/\/index\.html$/i, "/")
+	                    .replace(/\/+$/g, "");
+	                const segments = pathname.split("/").filter(Boolean);
+	                const finalSegment = segments[segments.length - 1] || "";
+	                const categoryRoutes = {
+	                    "courier-bags": "Courier Bags",
+	                    "courier-bags-sri-lanka": "Courier Bags",
+	                    "bubble-mailers": "Bubble Mailers",
+	                    "bubble-mailers-sri-lanka": "Bubble Mailers",
+	                    "frosted-ziplock-bags-sri-lanka": "Frosted Ziplock Bags",
+	                    "handled-courier-bags-sri-lanka": "Handled Courier Bags"
+	                };
+	                if (finalSegment === "shop") return { view: "shop", params: {} };
+	                if (categoryRoutes[finalSegment]) return { view: "shop", params: { category: categoryRoutes[finalSegment] } };
+	                if (finalSegment === "about" || finalSegment === "about-lanka-poly-packs") return { view: "about", params: {} };
+	                if (finalSegment === "contact") return { view: "contact", params: {} };
+	                if (finalSegment === "cart") return { view: "cart", params: {} };
+	                if (finalSegment === "checkout") return { view: "checkout", params: {} };
+
+	                const view = query.get("page") || "home";
+	                const params = {};
+	                if (query.get("category")) params.category = query.get("category");
+	                if (query.get("id")) params.id = query.get("id");
+	                return { view, params };
+	            }
 
             updateSeoMetadata(targetView, params = {}) {
                 const meta = {
@@ -826,31 +865,8 @@
                 const twitterTitle = document.querySelector('meta[name="twitter:title"]');
                 const twitterDescription = document.querySelector('meta[name="twitter:description"]');
                 const canonical = document.querySelector('link[rel="canonical"]');
-                const slugify = (value) => String(value || "")
-                    .toLowerCase()
-                    .replace(/×/g, "x")
-                    .replace(/[^a-z0-9]+/g, "-")
-                    .replace(/^-+|-+$/g, "");
-                const cleanCategoryRoutes = {
-                    "Courier Bags": "courier-bags-sri-lanka/",
-                    "Bubble Mailers": "bubble-mailers-sri-lanka/",
-                    "Frosted Ziplock Bags": "frosted-ziplock-bags-sri-lanka/",
-                    "Handled Courier Bags": "handled-courier-bags-sri-lanka/"
-                };
-                let routePath = "";
-                if (targetView === "shop" && params.category && cleanCategoryRoutes[params.category]) {
-                    routePath = cleanCategoryRoutes[params.category];
-                } else if (targetView === "shop") {
-                    routePath = "packaging-supplier-sri-lanka/";
-                } else if (targetView === "about") {
-                    routePath = "about-lanka-poly-packs/";
-                } else if (targetView === "contact") {
-                    routePath = "contact/";
-                } else if (targetView === "details" && params.id) {
-                    const product = this.getProductById(params.id);
-                    if (product) routePath = `products/${slugify(this.getDisplayProductName(product))}/`;
-                }
-                const routeUrl = new URL(routePath, CONFIG.SITE_URL).href;
+	                const routePath = this.getCleanRoutePath(targetView, params);
+	                const routeUrl = new URL(routePath, CONFIG.SITE_URL).href;
 
                 if (ogTitle) ogTitle.setAttribute("content", active.title);
                 if (ogDescription) ogDescription.setAttribute("content", active.description);
@@ -872,10 +888,10 @@
                 // Architectural Router Switch Loop
                 switch (targetView) {
                     case 'home': this.renderViewHome(); break;
-                    case 'shop': 
-                        if (params.category) this.state.filters.category = params.category;
-                        this.applyFilterPipelines(); 
-                        this.renderViewShop(); 
+	                    case 'shop': 
+	                        this.state.filters.category = params.category || 'All';
+	                        this.applyFilterPipelines(); 
+	                        this.renderViewShop(); 
                         break;
                     case 'details': this.renderViewProductDetails(params.id); break;
                     case 'cart': this.renderViewCart(); break;
@@ -1342,6 +1358,48 @@
                 let categoryOptions = distinctCategories.map(c => `<option value="${c}" ${this.state.filters.category === c ? 'selected' : ''}>${c}</option>`).join('');
                 let sizeOptions = distinctSizes.map(s => `<option value="${s}" ${this.state.filters.size === s ? 'selected' : ''}>${s === 'All' ? 'All Sizes' : s}</option>`).join('');
                 let colorOptions = distinctColors.map(col => `<option value="${col}" ${this.state.filters.color === col ? 'selected' : ''}>${col}</option>`).join('');
+                const pageCopy = {
+                    All: {
+                        heading: "Shop Courier Bags & Packaging Supplies",
+                        intro: "Browse courier bags, shipping bags, poly mailer bags, bubble mailers, ziplock bags, and handled courier bags for Sri Lankan online sellers.",
+                        contentTitle: "Packaging supplies for online sellers in Sri Lanka",
+                        content: "Lanka Poly Packs supplies practical ecommerce packaging for Instagram sellers, TikTok sellers, Daraz sellers, clothing boutiques, and small businesses. Shop self seal courier bags, padded bubble mailers, frosted ziplock bags, and handled delivery bags with WhatsApp ordering, retail quantities, wholesale pricing, and islandwide cash on delivery."
+                    },
+                    "Courier Bags": {
+                        heading: "Courier Bags Sri Lanka",
+                        intro: "Shop self seal courier bags, shipping bags, and poly mailer bags for clothing orders, online stores, and delivery parcels across Sri Lanka.",
+                        contentTitle: "Self seal courier bags and poly mailers",
+                        content: "Courier bags are a popular choice for Sri Lankan online sellers because they are lightweight, easy to seal, and suitable for clothing, accessories, documents, gifts, and retail orders. Lanka Poly Packs offers courier bags in useful sizes and colours for small businesses that need clean, reliable packing without complicated ordering."
+                    },
+                    "Bubble Mailers": {
+                        heading: "Bubble Mailers Sri Lanka",
+                        intro: "Shop padded bubble mailer bags for safer delivery of cosmetics, accessories, books, gifts, and fragile ecommerce items.",
+                        contentTitle: "Padded mailer bags for extra protection",
+                        content: "Bubble mailers help protect items during delivery while keeping the parcel neat and lightweight. They are useful for online sellers who ship cosmetics, jewellery, phone accessories, small gifts, books, and other products that need more protection than a standard courier bag."
+                    },
+                    "Frosted Ziplock Bags": {
+                        heading: "Frosted Ziplock Bags Sri Lanka",
+                        intro: "Shop frosted ziplock bags for clothing packaging, boutique packing, product storage, gifts, and clean retail presentation.",
+                        contentTitle: "Frosted ziplock bags for clothing and retail packing",
+                        content: "Frosted ziplock bags give clothing, fabric items, accessories, and gifts a clean retail look. They are reusable, easy to open and close, and useful for boutiques, Instagram shops, and home businesses that want tidy product presentation before courier delivery."
+                    },
+                    "Handled Courier Bags": {
+                        heading: "Handled Courier Bags Sri Lanka",
+                        intro: "Shop handled courier bags for larger parcels, retail orders, boutique packaging, and easy customer carry bags.",
+                        contentTitle: "Handled delivery bags for larger orders",
+                        content: "Handled courier bags are suitable for bigger clothing orders, retail packing, and customer handover parcels. The built-in handle makes the package easier to carry while keeping the order protected and ready for delivery."
+                    }
+                };
+                const activePageCopy = pageCopy[this.state.filters.category] || pageCopy.All;
+                const relatedLinksHtml = `
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <button onclick="App.navigateTo('shop')" class="rounded-full border border-blue-100 bg-white px-3 py-2 text-xs font-black text-blue-600 hover:border-blue-300">All Products</button>
+                        <button onclick="App.navigateTo('shop', {category: 'Courier Bags'})" class="rounded-full border border-blue-100 bg-white px-3 py-2 text-xs font-black text-blue-600 hover:border-blue-300">Courier Bags</button>
+                        <button onclick="App.navigateTo('shop', {category: 'Bubble Mailers'})" class="rounded-full border border-blue-100 bg-white px-3 py-2 text-xs font-black text-blue-600 hover:border-blue-300">Bubble Mailers</button>
+                        <button onclick="App.navigateTo('shop', {category: 'Frosted Ziplock Bags'})" class="rounded-full border border-blue-100 bg-white px-3 py-2 text-xs font-black text-blue-600 hover:border-blue-300">Ziplock Bags</button>
+                        <button onclick="App.navigateTo('contact')" class="rounded-full border border-blue-100 bg-white px-3 py-2 text-xs font-black text-blue-600 hover:border-blue-300">Contact</button>
+                    </div>
+                `;
                 const filterControlsHtml = `
                     <div class="flex items-center justify-between pb-3 border-b border-gray-100">
                         <h3 class="font-bold text-gray-900 text-sm uppercase tracking-wider"><i class="fa-solid fa-sliders mr-2 text-blue-600"></i>Filters</h3>
@@ -1488,7 +1546,8 @@
                 }
                 const mobileShopHtml = `
                     <div class="lg:hidden bg-white px-4 py-6">
-                        <h1 class="text-[27px] font-black tracking-tight text-gray-950">Shop All Products</h1>
+                        <h1 class="text-[27px] font-black tracking-tight text-gray-950">${activePageCopy.heading}</h1>
+                        <p class="mt-2 text-sm leading-6 text-gray-500">${activePageCopy.intro}</p>
                         <div class="mt-4 grid grid-cols-[auto_1fr_auto] gap-3">
                             <details class="relative">
                                 <summary class="flex h-12 list-none items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 text-sm font-bold text-gray-900 shadow-sm"><i class="fa-solid fa-sliders text-blue-600"></i> Filter</summary>
@@ -1517,18 +1576,23 @@
                         <div class="mt-5 grid grid-cols-2 gap-4">
                             ${mobileProductCardsHtml}
                         </div>
+                        <section class="mt-7 rounded-2xl border border-blue-100 bg-blue-50/50 p-5">
+                            <h2 class="text-base font-black text-gray-950">${activePageCopy.contentTitle}</h2>
+                            <p class="mt-2 text-sm leading-6 text-gray-600">${activePageCopy.content}</p>
+                            ${relatedLinksHtml}
+                        </section>
                     </div>
                 `;
 
                 document.getElementById('appViewport').innerHTML = `
                     ${mobileShopHtml}
                     <div class="hidden lg:block">
-                    <div class="bg-gray-50 border-b border-gray-200 py-6 md:py-8">
-                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <h1 class="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Shop Courier Bags & Packaging Supplies</h1>
-                            <p class="text-xs md:text-sm text-gray-500 mt-1">Browse courier bags, shipping bags, poly mailer bags, bubble mailers, and ziplock bags in Sri Lanka.</p>
-                        </div>
-                    </div>
+	                    <div class="bg-gray-50 border-b border-gray-200 py-6 md:py-8">
+	                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+	                            <h1 class="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">${activePageCopy.heading}</h1>
+	                            <p class="text-xs md:text-sm text-gray-500 mt-1 max-w-3xl">${activePageCopy.intro}</p>
+	                        </div>
+	                    </div>
 
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-8">
                         
@@ -1547,11 +1611,16 @@
                             </div>
                         </div>
 
-                        <div class="lg:col-span-3">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                                ${productCardsHtml}
-                            </div>
-                        </div>
+	                        <div class="lg:col-span-3">
+	                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+	                                ${productCardsHtml}
+	                            </div>
+	                            <section class="mt-8 rounded-2xl border border-blue-100 bg-blue-50/60 p-6">
+	                                <h2 class="text-xl font-black text-gray-950">${activePageCopy.contentTitle}</h2>
+	                                <p class="mt-3 text-sm leading-7 text-gray-600">${activePageCopy.content}</p>
+	                                ${relatedLinksHtml}
+	                            </section>
+	                        </div>
                     </div>
                     </div>
                 `;
